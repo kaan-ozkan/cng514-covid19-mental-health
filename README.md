@@ -1,0 +1,4 @@
+# Mental Health Search Trends of Turkey During the COVID-19 Pandemic
+This repository contains a basic analysis of Google Trends search terms in Turkey in order to estimate the mental health situation in Turkey throughout the pandemic and draw attention to the overlooked mental health risks of the pandemic, economic stagnation and restrictions on Turkish citizens. This project was developed by Mehmet Kaan Özkan and Umut Yıldırım as an assignment for the CNG 514 Data Mining course at METU NCC.
+
+The program can simply be run with ``` python analyze.py ```. The associated report is within the repository as ```cng514-covid19-mental-health.pdf```.

@@ -2,7 +2,7 @@ import math, scipy, pandas as pd, matplotlib, sklearn as sk, numpy as np, matplo
 import matplotlib.ticker as ticker
 from sklearn.linear_model import LinearRegression
 
-display_on_screen = False
+display_on_screen = True
 
 data = pd.DataFrame([])
 anxiety = pd.read_csv("anksiyete.csv", delimiter = ",")
@@ -30,7 +30,7 @@ def analyze_and_display(type, save_to_file):
     plt.xticks(rotation = 30)
     ax1.plot(data["week"], data[type], c = type_colors[type], marker = '.', alpha = 0.8, linestyle = '-.')
     ax1.set_xlabel("Date")
-    ax1.set_ylabel("Search Interest", rotation = 0, labelpad = 40)
+    ax1.set_ylabel("Search Interest", rotation = 90, labelpad = 0)
 
     index = list(data.index)
     anxiety_data = []
@@ -48,9 +48,11 @@ def analyze_and_display(type, save_to_file):
         sub_list = data[type][i:i+4]
         sub_anxiety_data = anxiety_data[i:i+4]
 
-        reg = LinearRegression().fit(sub_anxiety_data, sub_list)
-        y_pred = reg.predict(sub_anxiety_data)
-        four_week_regs.extend(y_pred)
+        sub_reg = LinearRegression().fit(sub_anxiety_data, sub_list)
+        sub_y_pred = sub_reg.predict(sub_anxiety_data)
+        four_week_regs.extend(sub_y_pred)
+
+    print((y_pred[-1] - y_pred[0])/len(data["week"]))
 
     ax1.plot(data["week"][::4], four_week_regs[::4], c = 'black', marker = 'v', alpha = 0.8, linewidth = 2, linestyle = '-')
     ax1.legend([type, 'linear regression', '4-week linear regression'])
